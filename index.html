@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock! Paper! Scissors!</title>
+</head>
+<body>
+<script>
+let rps = ['rock', 'paper', 'scissors'];
+
+function computerPlay() {
+    let randomNum = Math.floor(Math.random()*rps.length);
+    return rps[randomNum];
+}
+
+function playRound (playerSelection, computerSelection) {
+    if (playerSelection === 'rock' && computerSelection === 'scissors' ||
+      playerSelection === 'paper' && computerSelection === 'rock' ||
+      playerSelection === 'scissors' && computerSelection === 'paper') {
+      return (`You win this round because ${playerSelection} beats ${computerSelection}.`);
+  } else if (computerSelection === 'rock' && playerSelection === 'scissors' ||
+      computerSelection === 'paper' && playerSelection === 'rock' ||
+      computerSelection === 'scissors' && playerSelection === 'paper') {
+      return (`You lose this round because ${computerSelection} beats ${playerSelection}.`);
+  } else {
+      return 'Wow! You\'ve tied! Try again.';
+  }
+}
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  for (let i=0; i < 5; i++) {
+
+    const playerSelection = prompt("Rock, Paper, or Scissors?");
+    const computerSelection = computerPlay();
+    console.log(`The computer has played "${computerSelection}"`);
+    const consoleOutput = playRound(playerSelection.toLowerCase(), computerSelection);
+    console.log(consoleOutput);
+
+    if (consoleOutput.includes("win", 3)) {
+      ++playerScore;
+    }else {
+      ++computerScore;
+    }
+  }
+
+  if (playerScore < computerScore){
+    console.log("Oh no! You lost.");
+  } else if (playerScore > computerScore) {
+    console.log("Awesome! You won.");
+  } else {
+    console.log("Well, it seems you've tied with the computer. Try again?");
+  }
+  }
+</script>
+</body>
+</html>
